@@ -1,28 +1,28 @@
 import React, { useState } from 'react'
+import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 
 export const GifExpertApp = () => {
-  const [categories, setcategories] = useState(['One punch', 'Atack on titan', 'Ao haru ride']);
-
-  const handleAdd = () => {
-    //Se puede tanto como destructurar como recibir un callback 
-    //setcategories([...categories, 'sakura']) 
-    setcategories(cats => [...cats, 'Mononoke']) 
-  }
-
-  return (
-    <>
-      <h2> GifExpertApp </h2>
-      <hr />
-      <button onClick={ handleAdd } > Agregar </button>
-
-      <ol>
-        {
-          categories.map( category => {
-            return <li key={ category }> { category } </li>
-          })
-        }
-      </ol>
     
-    </>
-  )
+    const [categories, setCategories] = useState(['One Punch']);
+
+    return (
+        <>
+            <h2>GifExpertApp</h2>
+            <AddCategory setCategories={ setCategories } />
+            <hr />
+
+            <ol>
+                {
+                    categories.map( category  => (
+                        <GifGrid 
+                            key={ category }
+                            category={ category }
+                        />
+                    ))
+                }
+            </ol>
+
+        </>
+    )
 }
